@@ -3,18 +3,20 @@ Some core classes that can be used in multiple of our projects
 
 Get it through Maven:
 ```
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
   
-  <dependency>
-	    <groupId>com.github.betterpluginsspigot</groupId>
-	    <artifactId>bettercore</artifactId>
-	    <version>1.0.0</version>
-	</dependency>
+<dependencies>
+    <dependency>
+        <groupId>com.github.betterpluginsspigot</groupId>
+        <artifactId>bettercore</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
   
   <!-- Prevent compatibility issues with other BetterX plugins -->
   <build>
