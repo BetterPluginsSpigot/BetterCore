@@ -8,6 +8,7 @@ import be.betterplugins.core.messaging.logging.BPLogger;
 import be.betterplugins.core.messaging.messenger.Messenger;
 import be.betterplugins.core.runnable.countdown.CountdownRunnable;
 import be.betterplugins.core.runnable.countdown.ICountdownAction;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class CoreFactory
      * @param level the minimum level
      * @return new BPLogger instance
      */
-    public BPLogger createLogger(Level level)
+    public BPLogger createLogger(@NotNull Level level)
     {
         return new BPLogger(level);
     }
@@ -41,7 +42,7 @@ public class CoreFactory
      * @param logger a BPLogger instance so that debug logging is possible
      * @return a new Messenger instance
      */
-    public Messenger createMessenger(String prefix, Map<String, String> messages, BPLogger logger)
+    public Messenger createMessenger(@NotNull String prefix, @NotNull Map<String, String> messages, @NotNull BPLogger logger)
     {
         return new Messenger(messages, logger, prefix);
     }
@@ -57,7 +58,7 @@ public class CoreFactory
      * @param onCount action to be ran for every countdown value that is > 0. No need to implement the interface, use lambda's instead!
      * @param onDone called once the counter reaches <= 0, after which this runnable cancels itself. No need to implement the interface, use lambda's instead!
      */
-    public CountdownRunnable createCountdownRunnable(int startingCount, ICountdownAction onCount, ICountdownAction onDone)
+    public CountdownRunnable createCountdownRunnable(int startingCount, @NotNull ICountdownAction onCount, @NotNull ICountdownAction onDone)
     {
         return new CountdownRunnable(startingCount, onCount, onDone);
     }
@@ -71,7 +72,7 @@ public class CoreFactory
      * @param unknownCommandMessage sent when a command is unknown. Placeholder: <command>
      * @return a CommandMessages instance, mapping each situation to the provided message
      */
-    public CommandMessages createCommandMessages(String mayNotExecuteMessage, String noPermissionmessage, String unknownCommandMessage)
+    public CommandMessages createCommandMessages(@NotNull String mayNotExecuteMessage, @NotNull String noPermissionmessage, @NotNull String unknownCommandMessage)
     {
         Map<CommandMessage, String> messageMap = new HashMap<CommandMessage, String>()
         {{
@@ -95,7 +96,7 @@ public class CoreFactory
      * @param commands the list of subcommands you want to register
      * @return a new BPCommandHandler instance
      */
-    public BPCommandHandler createCommandHandler(CommandMessages commandMessages, Messenger messenger, BPCommand... commands)
+    public BPCommandHandler createCommandHandler(@NotNull CommandMessages commandMessages, @NotNull Messenger messenger, @NotNull BPCommand... commands)
     {
         return new BPCommandHandler(commandMessages, messenger, commands);
     }
