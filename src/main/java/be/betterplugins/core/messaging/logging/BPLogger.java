@@ -8,6 +8,7 @@ public class BPLogger
 {
 
     private final Level logLevel;
+    private final String prefix;
 
     /**
      * Different logging levels that we use:
@@ -19,7 +20,22 @@ public class BPLogger
      */
     public BPLogger(Level logLevel)
     {
+        this(logLevel, "BetterPlugin");
+    }
+
+    /**
+     * Different logging levels that we use:
+     * During development: ALL
+     * During beta testing: FINE
+     * During live release: INFO
+     *
+     * @param logLevel the minimum logging level for messages to be shown
+     * @param pluginName the name of your plugin - will be displayed in all logs
+     */
+    public BPLogger(Level logLevel, String pluginName)
+    {
         this.logLevel = logLevel;
+        this.prefix = "[" + pluginName + "] ";
     }
 
     /**
@@ -40,7 +56,7 @@ public class BPLogger
         // Should BetterMarket log this message?
         if (level.intValue() >= logLevel.intValue() && logLevel != Level.OFF)
         {
-            message = "[BetterPurge] " + message;
+            message = prefix + message;
             if (Bukkit.getLogger().isLoggable(level))
                 Bukkit.getLogger().log(level, message);
             else
