@@ -1,5 +1,8 @@
 package be.betterplugins.core.collections;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.*;
 
 public class DoubleMap<K1, K2, V>
@@ -37,22 +40,22 @@ public class DoubleMap<K1, K2, V>
         this.bKeyMap.clear();
     }
 
-    public Set<K1> keySetForward()
+    public @NotNull Set<K1> keySetForward()
     {
         return this.forwardMap.keySet();
     }
 
-    public Set<K2> keySetBackward()
+    public @NotNull Set<K2> keySetBackward()
     {
         return this.backwardMap.keySet();
     }
 
-    public Collection<V> values()
+    public @NotNull Collection<V> values()
     {
         return this.forwardMap.values();
     }
 
-    public V removeForward(K1 fKey)
+    public @Nullable V removeForward(K1 fKey)
     {
         K2 bKey = this.fKeyMap.remove(fKey);
         this.bKeyMap.remove(bKey);
@@ -61,7 +64,7 @@ public class DoubleMap<K1, K2, V>
         return this.forwardMap.remove(fKey);
     }
 
-    public V removeBackward(K2 bKey)
+    public @Nullable V removeBackward(K2 bKey)
     {
         K1 fKey = this.bKeyMap.remove(bKey);
         this.fKeyMap.remove(fKey);
@@ -80,13 +83,43 @@ public class DoubleMap<K1, K2, V>
         return backwardMap.containsKey( key );
     }
 
-    public V getForward(K1 key)
+    public @Nullable V getForward(K1 key)
     {
-        return forwardMap.get(key);
+        return getForward(key, null);
     }
 
-    public V getBackward(K2 key)
+    /**
+     * Get a value and perform a specific action with this value if a value is found for this forward key
+     *
+     * @param key the key for which a value is sought
+     * @param onFound the action to perform with the resulting value. Nothing happens if no value was found
+     * @return the value that is found for this key
+     */
+    public @Nullable V getForward(K1 key, @Nullable IGetFoundAction<V> onFound)
     {
-        return backwardMap.get(key);
+        V value = forwardMap.get(key);
+        if (onFound != null && value != null)
+            onFound.handleResult(value);
+        return value;
+    }
+
+    public @Nullable V getBackward(K2 key)
+    {
+        return getBackward(key, null);
+    }
+
+    /**
+     * Get a value and perform a specific action with this value if a value is found for this backward key
+     *
+     * @param key the key for which a value is sought
+     * @param onFound the action to perform with the resulting value. Nothing happens if no value was found
+     * @return the value that is found for this key
+     */
+    public @Nullable V getBackward(K2 key, @Nullable IGetFoundAction<V> onFound)
+    {
+        V value = backwardMap.get(key);
+        if (onFound != null && value != null)
+            onFound.handleResult(value);
+        return value;
     }
 }
