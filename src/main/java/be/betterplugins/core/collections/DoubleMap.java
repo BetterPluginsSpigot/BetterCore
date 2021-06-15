@@ -1,8 +1,6 @@
 package be.betterplugins.core.collections;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class DoubleMap<K1, K2, V>
 {
@@ -47,6 +45,11 @@ public class DoubleMap<K1, K2, V>
     public Set<K2> keySetBackward()
     {
         return this.backwardMap.keySet();
+    }
+
+    public Collection<V> values()
+    {
+        return this.forwardMap.values();
     }
 
     public V removeForward(K1 fKey)
