@@ -2,7 +2,7 @@ package be.betterplugins.core;
 
 import be.betterplugins.core.commands.BPCommand;
 import be.betterplugins.core.commands.BPCommandHandler;
-import be.betterplugins.core.commands.BPCommandTabCompleter;
+import be.betterplugins.core.commands.BasicTabCompleter;
 import be.betterplugins.core.commands.messages.CommandMessage;
 import be.betterplugins.core.commands.messages.CommandMessages;
 import be.betterplugins.core.messaging.logging.BPLogger;
@@ -110,8 +110,8 @@ public class CoreFactory
      * @param commands the BPCommands for which we want to enable automatic tab completion
      * @return a new BPCommandTabCompleter instance
      */
-    public BPCommandTabCompleter createTabCompleter(@NotNull BPCommand... commands)
+    public BasicTabCompleter createTabCompleter(@NotNull BPCommand... commands)
     {
-        return new BPCommandTabCompleter(commands);
+        return new BasicTabCompleter(commands);
     }
 }

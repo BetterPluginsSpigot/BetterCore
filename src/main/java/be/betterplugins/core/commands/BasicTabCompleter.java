@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class BPCommandTabCompleter implements TabCompleter
+public class BasicTabCompleter implements TabCompleter
 {
 
     private final List<BPCommand> commands;
@@ -23,7 +23,7 @@ public class BPCommandTabCompleter implements TabCompleter
      *
      * @param commands the BPCommands for which we want to enable automatic tab completion
      */
-    public BPCommandTabCompleter(BPCommand... commands)
+    public BasicTabCompleter(BPCommand... commands)
     {
         this.commands = new ArrayList<>(Arrays.asList(commands));
     }
