@@ -1,4 +1,5 @@
 # BetterCore
+Need more helper classes? Check our [helper repository (BetterPlugins devs only)](https://github.com/BetterPluginsSpigot/ProjectBoardHelper)!
 Some core classes that can be used in multiple of our projects
 
 Get it through Maven:
