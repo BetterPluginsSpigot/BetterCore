@@ -8,7 +8,7 @@ public class BPLogger
 {
 
     private final Level logLevel;
-    private final String prefix;
+    protected final String prefix;
 
     /**
      * Different logging levels that we use:
